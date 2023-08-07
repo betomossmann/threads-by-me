@@ -1,34 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Build and Deploy Next.js 13 Threads Clone | React, Next JS, TypeScript, MongoDB
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## **Built with:**
+- *Next.js 13.4 with Server Side Rendering: Leverage the latest Next.js version to create a responsive and dynamic user experience.*
+- *MongoDB: Gain insight into handling complex schemas and managing multiple data sources efficiently.*
+- *TailwindCSS: Craft visually stunning layouts that provide an intuitive and aesthetically pleasing user interface.*
+- *Clerk Authentication: Utilize Clerk for seamless and secure authentication mechanisms.*
+- *UploadThing: Learn how to manage file uploads, a critical aspect of modern applications.*
+- *Shadcn Components: Dive into the world of Shadcn components to enhance the visual appeal and interactivity of your app.*
+- *Real-time Event Handling with Webhooks: Understand how to listen and respond to real-time events using webhooks.*
+- *Middleware, API Actions, and Authorization: Master the intricacies of middleware, API actions, and authorization layers.*
+- *Next.js Layout Route Groups: Integrate new layout route groups in Next.js to optimize the user journey.*
+- *Data Validation with Zod: Implement robust data validation using the Zod library to enhance the integrity of user inputs.*
+- *React Hook Form: Manage forms efficiently and with ease using the React Hook Form library.*
+- *Reusable Components: Learn the art of creating reusable components that streamline development and maintenance.*
+- *Solid Application Architecture: Build a reliable and scalable application architecture that can withstand rapid growth.*
