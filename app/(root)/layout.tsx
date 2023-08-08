@@ -1,5 +1,8 @@
 import '../globals.css'
-import { Bottombar, LeftSidebar, RightSidebar, Topbar } from '@/components'
+import Bottombar from '@/components/shared/bottombar'
+import RightSidebar from '@/components/shared/right-sidebar'
+import LeftSidebar from '@/components/shared/left-sidebar'
+import Topbar from '@/components/shared/topbar'
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
