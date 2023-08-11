@@ -1,25 +1,15 @@
 'use client'
 
-import {
-  Button,
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-  Input,
-  Textarea
-} from '@/components'
 import { isBase64Image } from '@/lib/utils'
 import { useUploadThing } from '@/lib/uploadthing'
 import { updateUser } from '@/lib/actions/user.actions'
 import { UserValidation } from '@/lib/validations/user'
+import { Button, Form, FormControl, FormField, FormItem, FormLabel, FormMessage, Input, Textarea } from '@/components/ui'
 
 import * as z from 'zod'
 import Image from 'next/image'
-import { ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { ChangeEvent, useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { usePathname, useRouter } from 'next/navigation'
 
@@ -38,7 +28,7 @@ interface Props {
 const AccountProfile = ({ user, btnTitle }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
-  const { startUpload } = useUploadThing("media")
+  const { startUpload } = useUploadThing('media')
   const [files, setFiles] = useState<File[]>([])
 
   const form = useForm({
@@ -72,10 +62,10 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       image: values.profile_photo,
     })
 
-    if (pathname === "/profile/edit") {
+    if (pathname === '/profile/edit') {
       router.back()
     } else {
-      router.push("/")
+      router.push('/')
     }
   }
 
@@ -88,7 +78,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       const file = e.target.files[0]
       setFiles(Array.from(e.target.files))
 
-      if (!file.type.includes("image")) return
+      if (!file.type.includes('image')) return
 
       fileReader.onload = async (event) => {
         const imageDataUrl = event.target?.result?.toString() || ''

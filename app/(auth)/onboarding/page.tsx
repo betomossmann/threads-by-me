@@ -1,4 +1,4 @@
-import { AccountProfile } from '@/components'
+import AccountProfile from '@/components/forms/account-profile'
 import { fetchUser } from '@/lib/actions/user.actions'
 
 import { redirect } from 'next/navigation'

@@ -1,13 +1,13 @@
 'use server'
 
-import { FilterQuery, SortOrder } from 'mongoose'
-import { revalidatePath } from 'next/cache'
-
 import Community from '@/lib/models/community.model'
 import Thread from '@/lib/models/thread.model'
 import User from '@/lib/models/user.model'
-
 import { connectToDB } from '@/lib/mongoose'
+
+import { FilterQuery, SortOrder } from 'mongoose'
+import { revalidatePath } from 'next/cache'
+
 
 export async function fetchUser(userId: string) {
   try {
