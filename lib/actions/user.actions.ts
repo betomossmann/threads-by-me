@@ -1,9 +1,10 @@
 'use server'
 
-import Community from '@/lib/models/community.model'
-import Thread from '@/lib/models/thread.model'
-import User from '@/lib/models/user.model'
 import { connectToDB } from '@/lib/mongoose'
+
+import User from '@/lib/models/user.model'
+import Thread from '@/lib/models/thread.model'
+import Community from '@/lib/models/community.model'
 
 import { FilterQuery, SortOrder } from 'mongoose'
 import { revalidatePath } from 'next/cache'
