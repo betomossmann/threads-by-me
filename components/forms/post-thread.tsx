@@ -1,17 +1,17 @@
 'use client'
 
-import { ThreadValidation } from '@/lib/validations/thread'
-import { createThread } from '@/lib/actions/thread.actions'
+import { Button } from '@/components/ui/button'
+import { Textarea } from '@/components/ui/textarea'
 import {
-  Button,
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
-  Textarea
-} from '@/components/ui'
+  FormMessage
+} from '@/components/ui/form'
+import { ThreadValidation } from '@/lib/validations/thread'
+import { createThread } from '@/lib/actions/thread.actions'
 
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'

@@ -1,14 +1,14 @@
 'use client'
 
 import {
-  Button,
   Form,
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  Input
-} from '@/components/ui'
+  FormLabel
+} from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import { CommentValidation } from '@/lib/validations/thread'
 import { addCommentToThread } from '@/lib/actions/thread.actions'
 
