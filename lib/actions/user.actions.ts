@@ -9,14 +9,13 @@ import Community from '@/lib/models/community.model'
 import { FilterQuery, SortOrder } from 'mongoose'
 import { revalidatePath } from 'next/cache'
 
-
 export async function fetchUser(userId: string) {
   try {
     connectToDB()
 
     return await User.findOne({ id: userId }).populate({
       path: 'communities',
-      model: Community,
+      model: Community
     })
   } catch (error: any) {
     throw new Error(`Failed to fetch user: ${error.message}`)
@@ -38,7 +37,7 @@ export async function updateUser({
   name,
   path,
   username,
-  image,
+  image
 }: Params): Promise<void> {
   try {
     connectToDB()
@@ -50,7 +49,7 @@ export async function updateUser({
         name,
         bio,
         image,
-        onboarded: true,
+        onboarded: true
       },
       { upsert: true }
     )
@@ -75,7 +74,7 @@ export async function fetchUserPosts(userId: string) {
         {
           path: 'community',
           model: Community,
-          select: 'name id image _id', // Select the 'name' and '_id' fields from the 'Community' model
+          select: 'name id image _id' // Select the 'name' and '_id' fields from the 'Community' model
         },
         {
           path: 'children',
@@ -83,10 +82,10 @@ export async function fetchUserPosts(userId: string) {
           populate: {
             path: 'author',
             model: User,
-            select: 'name image id', // Select the 'name' and '_id' fields from the 'User' model
-          },
-        },
-      ],
+            select: 'name image id' // Select the 'name' and '_id' fields from the 'User' model
+          }
+        }
+      ]
     })
     return threads
   } catch (error) {
@@ -101,7 +100,7 @@ export async function fetchUsers({
   searchString = '',
   pageNumber = 1,
   pageSize = 20,
-  sortBy = 'desc',
+  sortBy = 'desc'
 }: {
   userId: string
   searchString?: string
@@ -120,15 +119,12 @@ export async function fetchUsers({
 
     // Create an initial query object to filter users.
     const query: FilterQuery<typeof User> = {
-      id: { $ne: userId }, // Exclude the current user from the results.
+      id: { $ne: userId } // Exclude the current user from the results.
     }
 
     // If the search string is not empty, add the $or operator to match either username or name fields.
     if (searchString.trim() !== '') {
-      query.$or = [
-        { username: { $regex: regex } },
-        { name: { $regex: regex } },
-      ]
+      query.$or = [{ username: { $regex: regex } }, { name: { $regex: regex } }]
     }
 
     // Define the sort options for the fetched users based on createdAt field and provided sort order.
@@ -148,9 +144,8 @@ export async function fetchUsers({
     const isNext = totalUsersCount > skipAmount + users.length
 
     return { users, isNext }
-  } catch (error) {
-    console.error('Error fetching users:', error)
-    throw error
+  } catch (error: any) {
+    throw new Error(`Failed to fetch users: ${error.message}`)
   }
 }
 
@@ -169,11 +164,11 @@ export async function getActivity(userId: string) {
     // Find and return the child threads (replies) excluding the ones created by the same user
     const replies = await Thread.find({
       _id: { $in: childThreadIds },
-      author: { $ne: userId }, // Exclude threads authored by the same user
+      author: { $ne: userId } // Exclude threads authored by the same user
     }).populate({
       path: 'author',
       model: User,
-      select: 'name image _id',
+      select: 'name image _id'
     })
 
     return replies
