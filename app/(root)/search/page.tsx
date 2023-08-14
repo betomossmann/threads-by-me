@@ -1,10 +1,16 @@
-import { fetchUser, fetchUsers } from '@/lib/actions/user.actions'
 import UserCard from '@/components/cards/user-card'
+import Searchbar from '@/components/shared/search-bar'
+import Pagination from '@/components/shared/pagination'
+import { fetchUser, fetchUsers } from '@/lib/actions/user.actions'
 
 import { redirect } from 'next/navigation'
 import { currentUser } from '@clerk/nextjs'
 
-async function Page() {
+async function Page({
+  searchParams
+}: {
+  searchParams: { [key: string]: string | undefined }
+}) {
   const user = await currentUser()
   if (!user) return null
 
@@ -13,8 +19,8 @@ async function Page() {
 
   const result = await fetchUsers({
     userId: user.id,
-    searchString: '',
-    pageNumber: 1,
+    searchString: searchParams.q,
+    pageNumber: searchParams?.page ? +searchParams.page : 1,
     pageSize: 25
   })
 
@@ -22,11 +28,11 @@ async function Page() {
     <section>
       <h1 className="head-text mb-10">Search</h1>
 
-      {/* SEARCH BAR */}
+      <Searchbar routeType="search" />
 
       <div className="mt-14 flex flex-col gap-9">
         {result.users.length === 0 ? (
-          <p className="no-result">No Users</p>
+          <p className="no-result">No Result</p>
         ) : (
           <>
             {result.users.map((person) => (
@@ -42,6 +48,12 @@ async function Page() {
           </>
         )}
       </div>
+
+      <Pagination
+        path="search"
+        pageNumber={searchParams?.page ? +searchParams.page : 1}
+        isNext={result.isNext}
+      />
     </section>
   )
 }

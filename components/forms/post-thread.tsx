@@ -19,13 +19,17 @@ import { useOrganization } from '@clerk/nextjs'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { usePathname, useRouter } from 'next/navigation'
 
-function PostThread({ userId }: { userId: string }) {
+interface Props {
+  userId: string
+}
+
+function PostThread({ userId }: Props) {
   const router = useRouter()
   const pathname = usePathname()
 
   const { organization } = useOrganization()
 
-  const form = useForm({
+  const form = useForm<z.infer<typeof ThreadValidation>>({
     resolver: zodResolver(ThreadValidation),
     defaultValues: {
       thread: '',
@@ -47,18 +51,18 @@ function PostThread({ userId }: { userId: string }) {
   return (
     <Form {...form}>
       <form
-        onSubmit={form.handleSubmit(onSubmit)}
         className="mt-10 flex flex-col justify-start gap-10"
+        onSubmit={form.handleSubmit(onSubmit)}
       >
         <FormField
           control={form.control}
           name="thread"
           render={({ field }) => (
-            <FormItem className="flex flex-col w-full gap-3">
+            <FormItem className="flex w-full flex-col gap-3">
               <FormLabel className="text-base-semibold text-light-2">
-                content
+                Content
               </FormLabel>
-              <FormControl className="no-focus borde border-dark-4 bg-dark-3 text-light-1">
+              <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
                 <Textarea rows={15} {...field} />
               </FormControl>
               <FormMessage />

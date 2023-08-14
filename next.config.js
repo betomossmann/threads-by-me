@@ -28,10 +28,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'placehold.co'
       }
-    ],
-    typescript: {
-      ignoreBuildErrors: true
-    }
+    ]
   }
 }
 

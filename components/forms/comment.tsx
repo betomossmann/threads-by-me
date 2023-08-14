@@ -16,7 +16,7 @@ import * as z from 'zod'
 import Image from 'next/image'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 
 interface Props {
   threadId: string
@@ -24,11 +24,10 @@ interface Props {
   currentUserId: string
 }
 
-const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
-  const router = useRouter()
+function Comment({ threadId, currentUserImg, currentUserId }: Props) {
   const pathname = usePathname()
 
-  const form = useForm({
+  const form = useForm<z.infer<typeof CommentValidation>>({
     resolver: zodResolver(CommentValidation),
     defaultValues: {
       thread: ''
@@ -48,7 +47,7 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="comment-form">
+      <form className="comment-form" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name="thread"
@@ -57,18 +56,18 @@ const Comment = ({ threadId, currentUserImg, currentUserId }: Props) => {
               <FormLabel>
                 <Image
                   src={currentUserImg}
-                  alt="Profile Image"
-                  width={30}
-                  height={30}
+                  alt="current_user"
+                  width={48}
+                  height={48}
                   className="rounded-full object-cover"
                 />
               </FormLabel>
               <FormControl className="border-none bg-transparent">
                 <Input
                   type="text"
+                  {...field}
                   placeholder="Comment..."
                   className="no-focus text-light-1 outline-none"
-                  {...field}
                 />
               </FormControl>
             </FormItem>
